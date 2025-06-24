@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曹鹏博 - 个人简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 12px;
+            margin-bottom: 28px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #8b5cf6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+            color: #0c4a6e;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px -2px rgba(59, 130, 246, 0.3);
+        }
+        
+        .skill-category {
+            position: relative;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border-radius: 12px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .skill-level {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        
+        .skill-expert { background: #10b981; }
+        .skill-proficient { background: #3b82f6; }
+        .skill-intermediate { background: #f59e0b; }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #3b82f6;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        
+        .contact-item {
+            transition: all 0.2s ease;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        
+        .contact-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(-2px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        .achievement-badge i {
+            margin-right: 4px;
+            color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-4xl mx-auto p-6 sm:p-8 lg:p-12">
+        <!-- Header Section -->
+        <header class="flex flex-col sm:flex-row items-start justify-between mb-12 animate-fadeInUp">
+            <div>
+                <h1 class="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">曹鹏博</h1>
+                <p class="text-xl text-gray-600 mt-3 font-medium">求职方向：AI for Science / 材料信息学 / 数据挖掘</p>
+            </div>
+            <div class="text-right mt-6 sm:mt-0 space-y-3">
+                <div class="contact-item flex items-center justify-end">
+                    <span class="text-gray-600 font-medium">北京</span>
+                    <i class="fa-solid fa-location-dot w-5 h-5 ml-3 text-blue-500 text-center"></i>
+                </div>
+                <div class="contact-item flex items-center justify-end">
+                    <a href="tel:13772564611" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">137-7256-4611</a>
+                    <i class="fa-solid fa-phone w-5 h-5 ml-3 text-blue-500 text-center"></i>
+                </div>
+                <div class="contact-item flex items-center justify-end">
+                    <a href="mailto:pengbo_cao@qq.com" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">pengbo_cao@qq.com</a>
+                    <i class="fa-solid fa-envelope w-5 h-5 ml-3 text-blue-500 text-center"></i>
+                </div>
+                 <div class="contact-item flex items-center justify-end">
+                    <a href="https://github.com/cpb-cbb" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">GitHub 主页</a>
+                    <i class="fa-brands fa-github w-5 h-5 ml-3 text-blue-500 text-center"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Personal Advantage Section -->
+        <section class="mb-12 animate-fadeInUp stagger-1">
+            <h2 class="section-title">个人优势</h2>
+            <div class="card p-8">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-star text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-lg leading-relaxed text-gray-700">
+                            我是一名具备<strong class="text-blue-600">计算机、材料科学与工程、工业数字化</strong>交叉背景的复合型人才，研究方向聚焦于<strong class="text-blue-600">AI for Science</strong>前沿领域。我坚信数据驱动的科学发现是未来的核心趋势，并致力于将先进的AI技术应用于解决传统科学难题。我的硕士课题与项目经验使我具备了从海量非结构化文献中进行<strong class="text-blue-600">数据挖掘</strong>、构建<strong class="text-blue-600">自动化数据处理流程</strong>、并利用<strong class="text-blue-600">大语言模型（LLM）</strong>实现高精度信息抽取的全栈能力。同时，在西门子的实习经历让我深入了解了现代化工厂的数据采集与应用场景，为我未来将AI技术与工业应用结合奠定了坚实基础。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Skills Section -->
+        <section class="mb-12 animate-fadeInUp stagger-2">
+            <h2 class="section-title">核心技能</h2>
+            <div class="card p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="skill-category">
+                        <div class="flex items-center mb-4">
+                            <i class="fa-solid fa-code text-2xl text-blue-500 mr-3"></i>
+                            <h4 class="font-bold text-lg text-gray-800">编程与开发</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Python <span class="skill-level skill-expert"></span></span>
+                            <span class="tag">Git <span class="skill-level skill-proficient"></span></span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="flex items-center mb-4">
+                            <i class="fa-solid fa-brain text-2xl text-purple-500 mr-3"></i>
+                            <h4 class="font-bold text-lg text-gray-800">AI & 数据科学</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Pytorch <span class="skill-level skill-proficient"></span></span>
+                            <span class="tag">Scikit-learn <span class="skill-level skill-proficient"></span></span>
+                            <span class="tag">Pandas <span class="skill-level skill-expert"></span></span>
+                            <span class="tag">LLM应用 <span class="skill-level skill-expert"></span></span>
+                            <span class="tag">提示词工程 <span class="skill-level skill-expert"></span></span>
+                            <span class="tag">数据挖掘 <span class="skill-level skill-expert"></span></span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="flex items-center mb-4">
+                            <i class="fa-solid fa-tools text-2xl text-green-500 mr-3"></i>
+                            <h4 class="font-bold text-lg text-gray-800">专业与设计软件</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">DEMON3D <span class="skill-level skill-proficient"></span></span>
+                            <span class="tag">C4D <span class="skill-level skill-intermediate"></span></span>
+                            <span class="tag">Premiere Pro (Pr) <span class="skill-level skill-intermediate"></span></span>
+                            <span class="tag">After Effects (Ae) <span class="skill-level skill-intermediate"></span></span>
+                            <span class="tag">CAD <span class="skill-level skill-intermediate"></span></span>
+                            <span class="tag">Fitz (PyMuPDF) <span class="skill-level skill-expert"></span></span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="flex items-center mb-4">
+                            <i class="fa-solid fa-language text-2xl text-cyan-500 mr-3"></i>
+                            <h4 class="font-bold text-lg text-gray-800">语言能力</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">英语 (CET-6 / 读写熟练) <span class="skill-level skill-proficient"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 text-sm text-gray-500 text-center">
+                    <span class="inline-flex items-center mr-4"><span class="skill-level skill-expert mr-2"></span>精通</span>
+                    <span class="inline-flex items-center mr-4"><span class="skill-level skill-proficient mr-2"></span>熟练</span>
+                    <span class="inline-flex items-center"><span class="skill-level skill-intermediate mr-2"></span>了解</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="mb-12 animate-fadeInUp stagger-3">
+            <h2 class="section-title">教育背景</h2>
+            <div class="space-y-6">
+                <div class="card p-8 timeline-item">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">中国矿业大学（北京）</h3>
+                            <p class="text-lg text-gray-700 font-medium">新能源科学与工程 | 硕士</p>
+                            <p class="text-sm text-blue-600 mt-1 font-medium">与中国科学院计算机网络信息中心联合培养</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-blue-600">2023 - 2026</span>
+                            <div class="achievement-badge mt-2">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                在读硕士
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-gray-800">
+                        <p class="text-base"><strong>研究方向：</strong>基于大语言模型（LLM）的文献数据挖掘，用于预测多孔炭材料的电化学性能。</p>
+                        <div class="mt-4">
+                            <h5 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fa-solid fa-trophy text-yellow-500 mr-2"></i>
+                                主要成果
+                            </h5>
+                            <ul class="list-disc list-inside space-y-3 pl-2">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></span>
+                                    <span>搭建了基于<span class="tag">Elsevier TDM API</span>的文献获取程序，实现了原始JSON格式全文文档的自动化、快速采集。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></span>
+                                    <span>成功构建了多孔炭材料领域首个综合数据集，并基于此开发了预测模型，能够通过孔结构等理化性质，精准预测超级电容器的核心电化学性能（能量密度 <span class="highlight-number">R²≈0.9</span>，比电容 <span class="highlight-number">R²≈0.8</span>）。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-8 timeline-item">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">西安建筑科技大学</h3>
+                            <p class="text-lg text-gray-700 font-medium">冶金工程 | 本科</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-blue-600">2019 - 2023</span>
+                            <div class="achievement-badge mt-2">
+                                <i class="fa-solid fa-certificate"></i>
+                                本科毕业
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="mb-12 animate-fadeInUp stagger-4">
+            <h2 class="section-title">项目与实习经历</h2>
+            <div class="space-y-8">
+                <!-- Project 2: CAS -->
+                <div class="card p-8 timeline-item">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                           <h3 class="text-xl font-bold text-gray-900 mb-2">中国科学院材料基因项目</h3>
+                           <p class="text-lg font-medium text-blue-600">核心开发人员</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-blue-600">2024.08 - 2025.06</span>
+                            <div class="achievement-badge mt-2">
+                                <i class="fa-solid fa-flask"></i>
+                                科研项目
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4 text-gray-800 leading-relaxed">
+                        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-medium text-gray-800">
+                                <i class="fa-solid fa-lightbulb text-yellow-500 mr-2"></i>
+                                <strong>项目简介：</strong> 负责开发基于大语言模型的数据挖掘技术，为下游的机器学习和知识图谱构建提供结构化、高质量的材料科学数据。
+                            </p>
+                        </div>
+                        <ul class="list-none space-y-4 pl-2">
+                            <li>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <h6 class="font-bold text-gray-800 mb-2 flex items-center">
+                                        <i class="fa-solid fa-file-text text-blue-500 mr-2"></i>
+                                        文献处理与预标注平台开发
+                                    </h6>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-700">
+                                        <li>基于<span class="tag">Fitz</span>库进行PDF文本与图片数据高效提取，并集成加密文档检测与<span class="tag">OCR</span>识别流程。</li>
+                                        <li>主导开发了基于<span class="tag">智谱AI API</span>的文献预标注平台，成功处理超过<span class="highlight-number">90万篇</span>文献，极大提升了数据获取效率。</li>
+                                        <li>该平台支持领域专家进行快速筛选、校对，并为特定领域文献抽取模型的微调提供高质量数据集。</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                    <h6 class="font-bold text-gray-800 mb-2 flex items-center">
+                                        <i class="fa-solid fa-robot text-purple-500 mr-2"></i>
+                                        LLM信息抽取与结构化
+                                    </h6>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-700">
+                                        <li>负责针对6类半导体材料的文献信息抽取模型开发，通过精巧的<span class="tag">提示词工程</span>与结构化输出约束，模型在关键信息抽取的<span class="highlight-number">准确率达到90%以上</span>。</li>
+                                        <li>确保模型输出的JSON等结构化数据成功率超过<span class="highlight-number">98%</span>，为下游任务提供了可靠的数据源。</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 1: Siemens -->
+                <div class="card p-8 timeline-item">
+                     <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">西门子 Advanta 实习</h3>
+                            <p class="text-lg font-medium text-green-600">三维建模动画仿真助理</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-blue-600">2024.06 - 2025.06</span>
+                            <div class="achievement-badge mt-2">
+                                <i class="fa-solid fa-building"></i>
+                                企业实习
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-4 text-gray-800 leading-relaxed">
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-medium text-gray-800">
+                                <i class="fa-solid fa-industry text-green-500 mr-2"></i>
+                                <strong>项目简介：</strong> 负责将工业客户的数字化、自动化设计方案，在<span class="tag">DEMON3D</span>软件中进行三维可视化仿真，旨在探索现代化工厂中可供采集和分析的数据类型与流程。
+                            </p>
+                        </div>
+                        <ul class="list-disc list-inside space-y-3 pl-4 text-gray-700">
+                            <li>通过三维建模与编程，直观呈现客户的解决方案，包括园区物料的<strong>入库、出库、转运</strong>等动态流程。</li>
+                            <li>深入仿真工厂内部的具体工艺流程，为评估和优化自动化方案提供可视化依据。</li>
+                            <li class="bg-yellow-50 p-3 rounded-lg border-l-3 border-yellow-400">
+                                <strong class="text-yellow-800 flex items-center">
+                                    <i class="fa-solid fa-star text-yellow-500 mr-2"></i>
+                                    核心收获：
+                                </strong>
+                                <span class="text-gray-700 ml-6">深入理解了工业4.0背景下工厂的<strong>数据采集点、数据流转路径和数据应用场景</strong>，为后续将AI技术与工业数据结合积累了宝贵经验。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competition Section -->
+        <section class="mb-12 animate-fadeInUp stagger-4">
+            <h2 class="section-title">竞赛经历</h2>
+             <div class="card p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">AI安全预警：电动汽车电池异常检测大赛</h3>
+                        <p class="text-lg text-gray-700 font-medium">玻尔实验室主办</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-6 py-3 rounded-xl shadow-lg">
+                            <p class="text-xl font-bold flex items-center">
+                                <i class="fa-solid fa-trophy mr-2"></i>
+                                第五名
+                            </p>
+                            <span class="text-sm opacity-90">综合得分: 0.8805</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-orange-50 to-yellow-50 p-6 rounded-lg border-l-4 border-orange-400">
+                    <p class="text-gray-800 leading-relaxed">
+                        在本次比赛中，通过对电池数据进行深度分析和<span class="tag">特定的特征工程</span>，仅使用<span class="tag">传统机器学习算法</span>（如XGBoost, LightGBM等），便取得了优异成绩。该策略证明了在资源有限或不适合部署复杂神经网络的场景下，扎实的数据理解和特征工程能力同样能创造巨大价值。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 py-8 border-t border-gray-200">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-6 inline-block">
+                <p class="text-gray-600 text-sm mb-2">
+                    <i class="fa-solid fa-calendar-alt text-blue-500 mr-2"></i>
+                    简历最后更新于 2025年6月
+                </p>
+                <p class="text-gray-600 text-sm">
+                    <i class="fa-brands fa-github text-gray-500 mr-2"></i>
+                    <a href="https://github.com/cpb-cbb/resume-html" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors font-medium">查看简历源码</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
